@@ -62,14 +62,6 @@ The Express philosophy is to provide small, robust tooling for HTTP servers, mak
         For more information visit:
         https://www.npmjs.com/package/mongoose
 
-## ERD:
-
-![Untitled%20Diagram-Page-2.drawio img](https://github.com/noorah15/server/blob/main/Untitled%20Diagram-Page-2.drawio.png)
-
-## UML:
-
-![Untitled%20Diagram.drawio%20(1) img](<https://github.com/MP-Project-Noorah/server/blob/main/images/Untitled%20Diagram.drawio%20(1).png>)
-
 ## Models:
 
 ### users:
@@ -127,6 +119,14 @@ The Express philosophy is to provide small, robust tooling for HTTP servers, mak
 | tripId | Schema <trip> | required | n/a           |
 | cost   | Number        | required | n/a           |
 | isDel  | Boolean       | n/a      | false         |
+
+## ERD:
+
+![Untitled%20Diagram-Page-2.drawio img](https://github.com/noorah15/server/blob/main/Untitled%20Diagram-Page-2.drawio.png)
+
+## UML:
+
+![Untitled%20Diagram.drawio%20(1) img](<https://github.com/MP-Project-Noorah/server/blob/main/images/Untitled%20Diagram.drawio%20(1).png>)
 
 ## Routers:
 
