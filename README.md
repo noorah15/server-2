@@ -68,62 +68,77 @@ The Express philosophy is to provide small, robust tooling for HTTP servers, mak
 
 ### users:
 
-    email: { type: String, required: true, trim: true },
-    password: { type: String, required: true },
-    fav: { type: Array, required: false },
-    role:{ref from role table},
-    isDel:{type: Boolean, required: true, trim: true}
+| key      | type          | options        | default value |
+| -------- | ------------- | -------------- | ------------- |
+| email    | String        | required, trim | n/a           |
+| password | String        | required       | n/a           |
+| fav      | String        | required       | n/a           |
+| role     | Schema <role> | required       | n/a           |
+| isDel    | Boolean       | n/a            | false         |
 
 ### hotels:
 
-    name: { type: String, required: true, trim: true },
-    city: { type: String, required: true, trim: true },
-    desc: { type: String, required: true },
-    imges: { type: Array, required: true },
-    cost: { type: Number, required: true },
-    isDel:{type: Boolean, required: true}
+| key   | type    | options        | default value |
+| ----- | ------- | -------------- | ------------- |
+| name  | String  | required, trim | n/a           |
+| city  | String  | required, trim | n/a           |
+| desc  | String  | required       | n/a           |
+| imges | Array   | required       | n/a           |
+| cost  | Number  | required       | n/a           |
+| isDel | Boolean | n/a            | false         |
 
 ### festivals:
 
-    name: { type: String, required: true, trim: true },
-    city: { type: String, required: true, trim: true },
-    desc: { type: String, required: true },
-    imges: { type: Array, required: true },
-    cost: { type: Number, required: true },
-    isDel:{type: Boolean, required: true, trim: true}
+| key   | type    | options        | default value |
+| ----- | ------- | -------------- | ------------- |
+| name  | String  | required, trim | n/a           |
+| city  | String  | required, trim | n/a           |
+| desc  | String  | required       | n/a           |
+| imges | Array   | required       | n/a           |
+| cost  | Number  | required       | n/a           |
+| isDel | Boolean | n/a            | false         |
 
 ### trips:
 
-    userId:{ref from user table},
-    hotelId:{ref from hotels table},
-    FestivalId:{ref from Festivals table},
-    name: { type: String, required: true, trim: true },
-    city: { type: String, required: true, trim: true },
-    cost: { type: Number, required: true },
-    days: { type: Number, required: true },
-    catg: { type: String, required: true, trim: true },
-    isItSuitableForFamily:{type: Boolean, required: true}
-    isDel:{type: Boolean, required: true}
+| key                   | type               | options        | default value |
+| --------------------- | ------------------ | -------------- | ------------- |
+| userId                | Schema <user>      | required       | n/a           |
+| hotelId               | Schema <hotels>    | required       | n/a           |
+| FestivalId            | Schema <festivals> | required       | n/a           |
+| name                  | String             | required, trim | n/a           |
+| city                  | String             | required, trim | n/a           |
+| cost                  | Number             | required       | n/a           |
+| days                  | Number             | required       | n/a           |
+| catg                  | String             | required, trim | n/a           |
+| isItSuitableForFamily | Boolean            | n/a            | true          |
+| isDel                 | Boolean            | n/a            | false         |
 
 ### Orders:
 
-    userId:{ref from user table},
-    tripId:{ref from trips table},
-    cost: { type: Number, required: true },
-    isDel:{type: Boolean, required: true}
+| key    | type          | options  | default value |
+| ------ | ------------- | -------- | ------------- |
+| userId | Schema <user> | required | n/a           |
+| tripId | Schema <trip> | required | n/a           |
+| cost   | Number        | required | n/a           |
+| isDel  | Boolean       | n/a      | false         |
 
 ## Routers:
 
-    post "user/signup"
-    post "user/login"
-
-    post "hotels/add"
-
-    post "touristPlaces/add"
-
-    post "journey/add"
-    get "journey/get"
-    get "journey/getInfo/:id"
-    get "journey/getJourneyByCity/:city1"
-    get "journey/getJourneyByCatg/:catg1"
-    get "journey/getJourneyByDays/:days1"
+| HTTP Method | URL                               | Request Body                                                                  | Success status | Error status | Description                  |
+| ----------- | --------------------------------- | ----------------------------------------------------------------------------- | -------------- | ------------ | ---------------------------- |
+| post        | "user/signup"                     | email, password,role                                                          | 201            | 400          | create account               |
+| post        | "user/login"                      | email, password,                                                              | 201            | 400          | login account                |
+| post        | "hotels/add"                      | name, city, desc, imges, cost,                                                | 201            | 400          | add hotel                    |
+| put         | "hotels/edit"                     | id, name, city, desc, imges, cost,                                            | 201            | 400          | edit hotel                   |
+| delete      | "hotels/del"                      | id                                                                            | 201            | 400          | delete hotel                 |
+| post        | "touristPlaces/add"               | name, city, desc, imges, cost,                                                | 201            | 400          | add touristPlaces            |
+| put         | "touristPlaces/edit"              | id,name, city, desc, imges, cost,                                             | 201            | 400          | edit touristPlaces           |
+| delete      | "touristPlaces/del"               | id                                                                            | 201            | 400          | delete touristPlaces         |
+| post        | "journey/add"                     | userId, hotelId, festivalId,name, city, cost,days,catg, isItSuitableForFamily | 201            | 400          | add journey                  |
+| put         | "journey/edit"                    | id, hotelId, festivalId,name, city, cost,days,catg, isItSuitableForFamily     | 201            | 400          | edit journey                 |
+| delete      | "journey/del"                     | id                                                                            | 201            | 400          | delete journey               |
+| get         | "journey/get"                     |                                                                               | 201            | 400          | get the journey info         |
+| get         | "journey/getInfo/:id"             | id                                                                            | 201            | 400          | get the specifc journey info |
+| get         | "journey/getJourneyByCity/:city1" | city                                                                          | 201            | 400          | get the journey info by city |
+| get         | "journey/getJourneyByCatg/:catg1" | catg                                                                          | 201            | 400          | get the journey info by catg |
+| get         | "journey/getJourneyByDays/:days1" | days                                                                          | 201            | 400          | get the journey info by days |
