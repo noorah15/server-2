@@ -1,13 +1,5 @@
 # server
 
-## UML:
-
-![Untitled%20Diagram.drawio%20(1) img](<https://github.com/MP-Project-Noorah/server/blob/main/images/Untitled%20Diagram.drawio%20(1).png>)
-
-## ERD:
-
-![Untitled%20Diagram-Page-2.drawio img](https://github.com/noorah15/server/blob/main/Untitled%20Diagram-Page-2.drawio.png)
-
 ## How work:
 
 In this project, it has been created backend with Express server.
@@ -69,6 +61,14 @@ The Express philosophy is to provide small, robust tooling for HTTP servers, mak
 
         For more information visit:
         https://www.npmjs.com/package/mongoose
+
+## ERD:
+
+![Untitled%20Diagram-Page-2.drawio img](https://github.com/noorah15/server/blob/main/Untitled%20Diagram-Page-2.drawio.png)
+
+## UML:
+
+![Untitled%20Diagram.drawio%20(1) img](<https://github.com/MP-Project-Noorah/server/blob/main/images/Untitled%20Diagram.drawio%20(1).png>)
 
 ## Models:
 
