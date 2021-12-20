@@ -4,6 +4,8 @@
 
 ![Untitled%20Diagram-Page-2.drawio img](https://github.com/noorah15/server/blob/main/Untitled%20Diagram-Page-2.drawio.png)
 
+## How work:
+
 In this project, it has been created backend with Express server.
 
 In command write:
@@ -142,3 +144,13 @@ The Express philosophy is to provide small, robust tooling for HTTP servers, mak
 | get         | "journey/getJourneyByCity/:city1" | city                                                                          | 201            | 400          | get the journey info by city |
 | get         | "journey/getJourneyByCatg/:catg1" | catg                                                                          | 201            | 400          | get the journey info by catg |
 | get         | "journey/getJourneyByDays/:days1" | days                                                                          | 201            | 400          | get the journey info by days |
+
+## Links:
+
+- [Link to server](https://github.com/MP-Project-Noorah/server)
+
+- [Link to client](https://github.com/MP-Project-Noorah/client)
+
+- [Link to presentation](https://www.google.com)
+
+- [Link to Deployed App](https://www.google.com)
