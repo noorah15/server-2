@@ -4,10 +4,10 @@ const {
   getFestivals,
   delFestivals,
 } = require("./../controllers/festivals.js");
-const hotels = express.Router();
+const festivals = express.Router();
 
-hotels.post("/add", addFestivals);
-hotels.get("/get", getFestivals);
-hotels.delete("/get", delFestivals);
+festivals.post("/add", addFestivals);
+festivals.get("/get", getFestivals);
+festivals.delete("/get", delFestivals);
 
-module.exports = hotels;
+module.exports = festivals;

@@ -19,8 +19,8 @@ app.use("/hotels", hotels);
 const festivals = require("./routers/routes/festivals");
 app.use("/festivals", festivals);
 
-// const destinations = require("./routers/routes/destinations");
-// app.use("/destinations", destinations);
+const destinations = require("./routers/routes/destinations");
+app.use("/destinations", destinations);
 
 // const comments = require("./routers/routes/comments");
 // app.use("/comments", comments);
