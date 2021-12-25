@@ -22,8 +22,8 @@ app.use("/festivals", festivals);
 const destinations = require("./routers/routes/destinations");
 app.use("/destinations", destinations);
 
-// const comments = require("./routers/routes/comments");
-// app.use("/comments", comments);
+const comments = require("./routers/routes/comments");
+app.use("/comments", comments);
 
 // const orders = require("./routers/routes/orders");
 // app.use("/orders", orders);

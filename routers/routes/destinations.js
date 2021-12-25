@@ -8,6 +8,6 @@ const destinations = express.Router();
 
 destinations.post("/add", addDestinations);
 destinations.get("/get", getDestinations);
-destinations.delete("/get", delDestination);
+destinations.delete("/del", delDestination);
 
 module.exports = destinations;

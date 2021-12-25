@@ -8,6 +8,6 @@ const festivals = express.Router();
 
 festivals.post("/add", addFestivals);
 festivals.get("/get", getFestivals);
-festivals.delete("/get", delFestivals);
+festivals.delete("/del", delFestivals);
 
 module.exports = festivals;
