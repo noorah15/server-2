@@ -5,6 +5,7 @@ const festivals = new mongoose.Schema({
   city: { type: String, required: true, trim: true },
   desc: { type: String, required: true },
   imges: { type: Array, required: true },
+  map: { type: String, required: true },
   cost: { type: Number, required: true },
   isDel: { type: Boolean, default: false },
 });

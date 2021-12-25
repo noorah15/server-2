@@ -54,4 +54,15 @@ const getHotels = (req, res) => {
     });
 };
 
-module.exports = { addHotels, addHotelInfo, getHotels };
+const delHotel = async (req, res) => {
+  const { hotelId } = req.body;
+
+  try {
+    let doc = await hotels.updateOne({ _id: hotelId }, { isDel: true });
+    res.status(200).json(doc);
+  } catch (err) {
+    res.status(400).json("Post not found");
+  }
+};
+
+module.exports = { addHotels, addHotelInfo, getHotels, delHotel };
