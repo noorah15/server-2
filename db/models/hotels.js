@@ -7,7 +7,7 @@ const hotels = new mongoose.Schema({
   imges: { type: Array, required: true },
   map: { type: String, required: true },
   moreInfo: { type: String, required: true },
-  Reviews: { type: Number, required: true },
+  reviews: { type: Number, required: true },
   isDel: { type: Boolean, default: false },
 });
 
