@@ -1,5 +1,5 @@
 const roleModel = require("./../../db/models/role");
-const userModel = require("./../../db/models/user");
+const userModel = require("./../../db/models/users");
 
 const adminAuthorization = async (req, res, next) => {
   const result = await roleModel.findById(req.token.role);
