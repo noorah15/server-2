@@ -25,6 +25,9 @@ app.use("/destinations", destinations);
 const comments = require("./routers/routes/comments");
 app.use("/comments", comments);
 
+const transportation = require("./routers/routes/transportation");
+app.use("/transportation", transportation);
+
 // const orders = require("./routers/routes/orders");
 // app.use("/orders", orders);
 
