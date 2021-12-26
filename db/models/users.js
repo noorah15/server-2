@@ -5,6 +5,7 @@ const users = new mongoose.Schema({
   password: { type: String, required: true },
   fav: { type: Array, required: false },
   role: { type: mongoose.Schema.Types.ObjectId, ref: "role" },
+  isActive: { type: Boolean, default: false },
   isDel: { type: Boolean, required: true, default: false },
 });
 
