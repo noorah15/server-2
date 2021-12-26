@@ -31,6 +31,9 @@ app.use("/transportation", transportation);
 const flights = require("./routers/routes/flights");
 app.use("/flights", flights);
 
+const touristGuides = require("./routers/routes/touristGuides");
+app.use("/touristGuides", touristGuides);
+
 // const orders = require("./routers/routes/orders");
 // app.use("/orders", orders);
 
