@@ -28,6 +28,9 @@ app.use("/comments", comments);
 const transportation = require("./routers/routes/transportation");
 app.use("/transportation", transportation);
 
+const flights = require("./routers/routes/flights");
+app.use("/flights", flights);
+
 // const orders = require("./routers/routes/orders");
 // app.use("/orders", orders);
 
