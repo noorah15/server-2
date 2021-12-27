@@ -65,7 +65,7 @@ const register = async (req, res) => {
           newUser
             .save()
             .then(async (result) => {
-              const message = `http://localhost:4000/users/verify/${result._id}`;
+              const message = `${process.env.BASE_URL}/users/verify/${result._id}`;
               console.log(message);
               await sendEmail(result.email, "Verify Email", message);
               res.status(201).json(result);
@@ -109,7 +109,7 @@ const resetPassword = async (req, res) => {
     // await sendEmail(user.email, "Verify Email", message);
     // console.log(user.email);
 
-    const message = `http://localhost:3000/users/completeResetPassword/${user._id}`;
+    const message = `${process.env.FRONT_URL}/users/completeResetPassword/${user._id}`;
     console.log(message);
     await sendEmail(user.email, "Verify Email", message);
     //res.status(201).json(result);
