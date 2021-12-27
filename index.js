@@ -25,8 +25,17 @@ app.use("/destinations", destinations);
 const comments = require("./routers/routes/comments");
 app.use("/comments", comments);
 
-// const orders = require("./routers/routes/orders");
-// app.use("/orders", orders);
+const transportation = require("./routers/routes/transportation");
+app.use("/transportation", transportation);
+
+const flights = require("./routers/routes/flights");
+app.use("/flights", flights);
+
+const touristGuides = require("./routers/routes/touristGuides");
+app.use("/touristGuides", touristGuides);
+
+const orders = require("./routers/routes/orders");
+app.use("/orders", orders);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {

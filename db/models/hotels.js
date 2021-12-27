@@ -8,6 +8,7 @@ const hotels = new mongoose.Schema({
   map: { type: String, required: true },
   moreInfo: { type: String, required: true },
   reviews: { type: Number, required: true },
+  hotelInfo: { type: Array, required: true },
   isDel: { type: Boolean, default: false },
 });
 
