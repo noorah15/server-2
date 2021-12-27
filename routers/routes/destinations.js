@@ -7,10 +7,12 @@ const {
   getDestinationByDays,
   getDestinationByCity,
   delDestination,
+  updateDestination,
 } = require("./../controllers/destinations.js");
 const destinations = express.Router();
 
 destinations.post("/add", addDestinations);
+destinations.put("/update", updateDestination);
 destinations.get("/get", getDestinations);
 destinations.get("/getDestinationById/:id", getDestinationById);
 destinations.get("/getDestinationByCatg/:catg", getDestinationByCatg);
