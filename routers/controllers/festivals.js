@@ -1,13 +1,13 @@
 const festivals = require("./../../db/models/festivals");
 
 const addFestivals = (req, res) => {
-  const { name, city, desc, imges, map, cost } = req.body;
+  const { name, city, desc, imge, map, cost } = req.body;
 
   const newFestivals = new festivals({
     name,
     city,
     desc,
-    imges,
+    imge,
     map,
     cost,
   });
@@ -38,10 +38,10 @@ const delFestivals = async (req, res) => {
   const { festivalId } = req.body;
 
   try {
-    let doc = await hotels.updateOne({ _id: festivalId }, { isDel: true });
+    let doc = await festivals.updateOne({ _id: festivalId }, { isDel: true });
     res.status(200).json(doc);
   } catch (err) {
-    res.status(400).json("Post not found");
+    res.status(400).json(err);
   }
 };
 

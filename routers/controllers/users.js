@@ -1,4 +1,5 @@
 const userModel = require("./../../db/models/users");
+const usernameCounterModel = require("./../../db/models/usernameCounter");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const sendEmail = require("./../../utils/email");
@@ -47,18 +48,23 @@ const register = async (req, res) => {
         });
         if (found) res.status(400).send("the email is exist");
         else {
+          const counter = await usernameCounterModel.findByIdAndUpdate(
+            { _id: "61c99519aecbfc65718c5f65" },
+            { $inc: { usernameCounter: 1 } }
+          );
+
+          const username = "w" + counter.usernameCounter;
+
           const newUser = new userModel({
             email: savedEmail,
-            // username: username,
+            username,
             password: passwordHashed,
-            // avter: avter,
             role,
           });
 
           newUser
             .save()
             .then(async (result) => {
-              //console.log(result._id);
               const message = `http://localhost:4000/users/verify/${result._id}`;
               console.log(message);
               await sendEmail(result.email, "Verify Email", message);
@@ -137,20 +143,17 @@ const completeResetPassword = async (req, res) => {
 };
 
 const login = (req, res) => {
-  const { usernameOrEmail, password } = req.body;
-  //console.log(usernameOrEmail + " " + password);
+  const { email, password } = req.body;
+  const editedEmail = email.toLowerCase().trim();
 
   userModel
     .find({
-      $or: [{ email: usernameOrEmail }, { username: usernameOrEmail }],
+      email: editedEmail,
       verified: true,
     })
     .then(async (result) => {
       if (result) {
-        if (
-          usernameOrEmail === result[0].email ||
-          usernameOrEmail === result[0].username
-        ) {
+        if (editedEmail === result[0].email) {
           const hashedPass = await bcrypt.compare(password, result[0].password);
 
           if (hashedPass) {

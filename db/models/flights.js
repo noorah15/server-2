@@ -4,7 +4,9 @@ const flights = new mongoose.Schema({
   from: { type: String, required: true, trim: true },
   to: { type: String, required: true, trim: true },
   flightClass: { type: String, required: true, trim: true },
-  price: { type: Array, required: true },
+  adultTicketPrice: { type: Number, required: true },
+  childTicketPrice: { type: Number, required: true },
+  infantTicketPrice: { type: Number, required: true },
   isDel: { type: Boolean, default: false },
 });
 

@@ -1,13 +1,22 @@
 const flightsModel = require("./../../db/models/flights");
 
 const addFlights = (req, res) => {
-  const { from, to, flightClass, price } = req.body;
+  const {
+    from,
+    to,
+    flightClass,
+    adultTicketPrice,
+    childTicketPrice,
+    infantTicketPrice,
+  } = req.body;
 
   const newFlights = new flightsModel({
     from,
     to,
     flightClass,
-    price,
+    adultTicketPrice,
+    childTicketPrice,
+    infantTicketPrice,
   });
 
   newFlights
