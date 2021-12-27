@@ -41,6 +41,65 @@ const getFlights = (req, res) => {
     });
 };
 
+const updateFlights = async (req, res) => {
+  try {
+    const {
+      flightsId,
+      from,
+      to,
+      flightClass,
+      adultTicketPrice,
+      childTicketPrice,
+      infantTicketPrice,
+    } = req.body;
+    let doc = "";
+    if (from !== undefined) {
+      doc = await flightsModel.updateOne({ _id: flightsId }, { from: from });
+    }
+
+    if (to !== undefined) {
+      doc = await flightsModel.updateOne({ _id: flightsId }, { to: to });
+      console.log(doc);
+    }
+
+    if (flightClass !== undefined) {
+      doc = await flightsModel.updateOne(
+        { _id: flightsId },
+        { flightClass: flightClass }
+      );
+      console.log(doc);
+    }
+
+    if (adultTicketPrice !== undefined) {
+      doc = await flightsModel.updateOne(
+        { _id: flightsId },
+        { adultTicketPrice: adultTicketPrice }
+      );
+      console.log(doc);
+    }
+
+    if (childTicketPrice !== undefined) {
+      doc = await flightsModel.updateOne(
+        { _id: flightsId },
+        { childTicketPrice: childTicketPrice }
+      );
+      console.log(doc);
+    }
+
+    if (infantTicketPrice !== undefined) {
+      doc = await flightsModel.updateOne(
+        { _id: flightsId },
+        { infantTicketPrice: infantTicketPrice }
+      );
+      console.log(doc);
+    }
+
+    res.status(200).json(doc);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
+
 const delFlights = async (req, res) => {
   const { flightsId } = req.body;
 
@@ -52,4 +111,4 @@ const delFlights = async (req, res) => {
   }
 };
 
-module.exports = { addFlights, getFlights, delFlights };
+module.exports = { addFlights, getFlights, delFlights, updateFlights };
