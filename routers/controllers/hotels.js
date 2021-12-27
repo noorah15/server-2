@@ -37,6 +37,68 @@ const getHotels = (req, res) => {
     });
 };
 
+const updateHotels = async (req, res) => {
+  try {
+    const {
+      hotelId,
+      name,
+      city,
+      desc,
+      imges,
+      map,
+      moreInfo,
+      hotelInfo,
+      reviews,
+    } = req.body;
+    let doc = "";
+    if (name !== undefined) {
+      doc = await hotels.updateOne({ _id: hotelId }, { name: name });
+    }
+
+    if (city !== undefined) {
+      doc = await hotels.updateOne({ _id: hotelId }, { city: city });
+      console.log(doc);
+    }
+
+    if (desc !== undefined) {
+      doc = await hotels.updateOne({ _id: hotelId }, { desc: desc });
+      console.log(doc);
+    }
+
+    if (imges !== undefined) {
+      doc = await hotels.updateOne({ _id: hotelId }, { imges: imges });
+      console.log(doc);
+    }
+
+    if (moreInfo !== undefined) {
+      doc = await hotels.updateOne({ _id: hotelId }, { moreInfo: moreInfo });
+      console.log(doc);
+    }
+
+    if (map !== undefined) {
+      doc = await hotels.updateOne({ _id: hotelId }, { map: map });
+      console.log(doc);
+    }
+
+    if (hotelInfo !== undefined) {
+      doc = await hotels.updateOne(
+        { _id: festivalId },
+        { hotelInfo: hotelInfo }
+      );
+      console.log(doc);
+    }
+
+    if (reviews !== undefined) {
+      doc = await hotels.updateOne({ _id: festivalId }, { reviews: reviews });
+      console.log(doc);
+    }
+
+    res.status(200).json(doc);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
+
 const delHotel = async (req, res) => {
   const { hotelId } = req.body;
 
@@ -48,4 +110,4 @@ const delHotel = async (req, res) => {
   }
 };
 
-module.exports = { addHotels, getHotels, delHotel };
+module.exports = { addHotels, getHotels, delHotel, updateHotels };

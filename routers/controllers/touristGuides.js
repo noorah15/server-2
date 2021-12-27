@@ -33,6 +33,55 @@ const getTouristGuides = (req, res) => {
     });
 };
 
+const updateTouristGuides = async (req, res) => {
+  try {
+    const { touristGuidesId, avter, fname, lname, city, mobile } = req.body;
+    let doc = "";
+    if (avter !== undefined) {
+      doc = await touristGuidesModel.updateOne(
+        { _id: touristGuidesId },
+        { avter: avter }
+      );
+    }
+
+    if (fname !== undefined) {
+      doc = await touristGuidesModel.updateOne(
+        { _id: touristGuidesId },
+        { fname: fname }
+      );
+      console.log(doc);
+    }
+
+    if (lname !== undefined) {
+      doc = await touristGuidesModel.updateOne(
+        { _id: touristGuidesId },
+        { lname: lname }
+      );
+      console.log(doc);
+    }
+
+    if (city !== undefined) {
+      doc = await touristGuidesModel.updateOne(
+        { _id: touristGuidesId },
+        { city: city }
+      );
+      console.log(doc);
+    }
+
+    if (mobile !== undefined) {
+      doc = await touristGuidesModel.updateOne(
+        { _id: touristGuidesId },
+        { mobile: mobile }
+      );
+      console.log(doc);
+    }
+
+    res.status(200).json(doc);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
+
 const delTouristGuides = async (req, res) => {
   const { touristGuidesId } = req.body;
 
@@ -47,4 +96,9 @@ const delTouristGuides = async (req, res) => {
   }
 };
 
-module.exports = { addTouristGuides, getTouristGuides, delTouristGuides };
+module.exports = {
+  addTouristGuides,
+  getTouristGuides,
+  updateTouristGuides,
+  delTouristGuides,
+};

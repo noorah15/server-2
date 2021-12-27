@@ -93,6 +93,79 @@ const getDestinationByCity = (req, res) => {
     });
 };
 
+const updateDestination = async (req, res) => {
+  try {
+    const {
+      destinationId,
+      festivalIds,
+      name,
+      city,
+      cost,
+      days,
+      catg,
+      isItSuitableForFamily,
+    } = req.body;
+    let doc = "";
+    if (festivalIds !== undefined) {
+      doc = await destinations.updateOne(
+        { _id: destinationId },
+        { festivalIds: festivalIds }
+      );
+    }
+    if (name !== undefined) {
+      doc = await destinations.updateOne(
+        { _id: destinationId },
+        { name: name }
+      );
+      console.log(doc);
+    }
+
+    if (city !== undefined) {
+      doc = await destinations.updateOne(
+        { _id: destinationId },
+        { city: city }
+      );
+      console.log(doc);
+    }
+
+    if (cost !== undefined) {
+      doc = await destinations.updateOne(
+        { _id: destinationId },
+        { cost: cost }
+      );
+      console.log(doc);
+    }
+
+    if (days !== undefined) {
+      doc = await destinations.updateOne(
+        { _id: destinationId },
+        { days: days }
+      );
+      console.log(doc);
+    }
+
+    if (catg !== undefined) {
+      doc = await destinations.updateOne(
+        { _id: destinationId },
+        { catg: catg }
+      );
+      console.log(doc);
+    }
+
+    if (isItSuitableForFamily !== undefined) {
+      doc = await destinations.updateOne(
+        { _id: destinationId },
+        { isItSuitableForFamily: isItSuitableForFamily }
+      );
+      console.log(doc);
+    }
+
+    res.status(200).json(doc);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
+
 const delDestination = async (req, res) => {
   const { destinationId } = req.body;
 
@@ -112,4 +185,5 @@ module.exports = {
   getDestinationByDays,
   getDestinationByCity,
   delDestination,
+  updateDestination,
 };
