@@ -34,6 +34,50 @@ const getFestivals = (req, res) => {
     });
 };
 
+const updateFestivals = async (req, res) => {
+  try {
+    const { festivalId, name, city, desc, imge, map, cost } = req.body;
+    let doc = "";
+    if (name !== undefined) {
+      doc = await festivals.updateOne({ _id: festivalId }, { name: name });
+    }
+
+    if (city !== undefined) {
+      doc = await festivals.updateOne({ _id: festivalId }, { city: city });
+      console.log(doc);
+    }
+
+    if (desc !== undefined) {
+      doc = await festivals.updateOne({ _id: festivalId }, { desc: desc });
+      console.log(doc);
+    }
+
+    if (imge !== undefined) {
+      doc = await festivals.updateOne({ _id: festivalId }, { imge: imge });
+      console.log(doc);
+    }
+
+    if (catg !== undefined) {
+      doc = await festivals.updateOne({ _id: festivalId }, { catg: catg });
+      console.log(doc);
+    }
+
+    if (map !== undefined) {
+      doc = await festivals.updateOne({ _id: festivalId }, { map: map });
+      console.log(doc);
+    }
+
+    if (cost !== undefined) {
+      doc = await festivals.updateOne({ _id: festivalId }, { cost: cost });
+      console.log(doc);
+    }
+
+    res.status(200).json(doc);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
+
 const delFestivals = async (req, res) => {
   const { festivalId } = req.body;
 
@@ -45,4 +89,4 @@ const delFestivals = async (req, res) => {
   }
 };
 
-module.exports = { addFestivals, getFestivals, delFestivals };
+module.exports = { addFestivals, getFestivals, delFestivals, updateFestivals };
