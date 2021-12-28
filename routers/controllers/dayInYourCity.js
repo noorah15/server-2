@@ -1,18 +1,30 @@
 const dayInYourCityModel = require("./../../db/models/dayInYourCity");
 
 const addDayInYourCity = (req, res) => {
-  const { name, city, desc, cost, expiryDate, timeStart, timeFinish, catg } =
-    req.body;
+  const {
+    name,
+    city,
+    desc,
+    cost,
+    startDate,
+    expiryDate,
+    timeStart,
+    timeFinish,
+    catg,
+    images,
+  } = req.body;
 
   const newDayInYourCity = new dayInYourCityModel({
     name,
     city,
     desc,
     cost,
+    startDate,
     expiryDate,
     timeStart,
     timeFinish,
     catg,
+    images,
   });
 
   newDayInYourCity

@@ -34,6 +34,30 @@ const getTransportation = (req, res) => {
     });
 };
 
+const getTransportationById = (req, res) => {
+  transportationModel
+    .find({ isDel: false })
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+};
+
+const getTransportationByCity = (req, res) => {
+  const { city } = req.params;
+  console.log(city);
+  transportationModel
+    .find({ city, isDel: false })
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+};
+
 const updateTransportation = async (req, res) => {
   try {
     const {
@@ -116,6 +140,8 @@ const delTransportation = async (req, res) => {
 module.exports = {
   addTransportation,
   getTransportation,
+  getTransportationById,
+  getTransportationByCity,
   updateTransportation,
   delTransportation,
 };

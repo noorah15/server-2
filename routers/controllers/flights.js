@@ -41,6 +41,30 @@ const getFlights = (req, res) => {
     });
 };
 
+const getFlightsByCity = (req, res) => {
+  const { from, to } = req.params;
+  flightsModel
+    .find({ from, to, isDel: false })
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+};
+
+const getFlightsById = (req, res) => {
+  const { id } = req.params;
+  flightsModel
+    .findOne({ _id: id, isDel: false })
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+};
+
 const updateFlights = async (req, res) => {
   try {
     const {
@@ -111,4 +135,11 @@ const delFlights = async (req, res) => {
   }
 };
 
-module.exports = { addFlights, getFlights, delFlights, updateFlights };
+module.exports = {
+  addFlights,
+  getFlights,
+  getFlightsById,
+  getFlightsByCity,
+  delFlights,
+  updateFlights,
+};
