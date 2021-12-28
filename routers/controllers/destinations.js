@@ -1,7 +1,18 @@
 const destinations = require("./../../db/models/destinations");
 
 const addDestinations = (req, res) => {
-  const { festivalIds, name, city, desc, cost, days, catg, date } = req.body;
+  const {
+    festivalIds,
+    name,
+    city,
+    desc,
+    cost,
+    days,
+    catg,
+    startDate,
+    expiryDate,
+    image,
+  } = req.body;
 
   const newDestinations = new destinations({
     festivalIds,
@@ -11,7 +22,9 @@ const addDestinations = (req, res) => {
     cost,
     days,
     catg,
-    date,
+    startDate,
+    expiryDate,
+    image,
   });
 
   newDestinations

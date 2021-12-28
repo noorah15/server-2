@@ -82,6 +82,31 @@ const updateTouristGuides = async (req, res) => {
   }
 };
 
+const getTouristGuidesByCity = (req, res) => {
+  const { city } = req.params;
+  console.log(city);
+  touristGuidesModel
+    .find({ city, isDel: false })
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+};
+
+const getTouristGuideById = (req, res) => {
+  const { id } = req.params;
+  touristGuidesModel
+    .findOne({ _id: id, isDel: false })
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+};
+
 const delTouristGuides = async (req, res) => {
   const { touristGuidesId } = req.body;
 
@@ -99,6 +124,8 @@ const delTouristGuides = async (req, res) => {
 module.exports = {
   addTouristGuides,
   getTouristGuides,
+  getTouristGuideById,
+  getTouristGuidesByCity,
   updateTouristGuides,
   delTouristGuides,
 };
