@@ -37,6 +37,9 @@ app.use("/touristGuides", touristGuides);
 const orders = require("./routers/routes/orders");
 app.use("/orders", orders);
 
+const dayInYourCity = require("./routers/routes/dayInYourCity");
+app.use("/dayInYourCity", dayInYourCity);
+
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Server on ${PORT}`);
