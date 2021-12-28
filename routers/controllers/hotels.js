@@ -37,6 +37,31 @@ const getHotels = (req, res) => {
     });
 };
 
+const getHotelById = (req, res) => {
+  const { id } = req.params;
+  hotels
+    .findOne({ _id: id, isDel: false })
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+};
+
+const getDestinationByCity = (req, res) => {
+  const { city } = req.params;
+  console.log(city);
+  hotels
+    .find({ city, isDel: false })
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+};
+
 const updateHotels = async (req, res) => {
   try {
     const {
@@ -110,4 +135,11 @@ const delHotel = async (req, res) => {
   }
 };
 
-module.exports = { addHotels, getHotels, delHotel, updateHotels };
+module.exports = {
+  addHotels,
+  getHotels,
+  delHotel,
+  updateHotels,
+  getHotelById,
+  getDestinationByCity,
+};
