@@ -50,19 +50,44 @@ const getDestinations = (req, res) => {
     });
 };
 
+const getTop = (req, res) => {
+  destinations
+    .find({ isDel: false })
+    .then((result) => {
+      //console.log(result);
+      for (let i = 0; i < result.length; i++) {
+        for (let j = i + 1; j < result.length; j++) {
+          //console.log(result[i].reviews);
+          if (result[i].reviews < result[j].reviews) {
+            let swap = result[i];
+            result[i] = result[j];
+            result[j] = swap;
+          }
+          //console.log(result[i]);
+        }
+      }
+
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+};
+
 const getDestinationById = (req, res) => {
   const { id } = req.params;
 
   destinations
     .findOne({ _id: id, isDel: false })
     .then(async (result) => {
+      //console.log(result);
       const festivals = await Promise.all(
         result.festivalIds.map(async (item) => {
           return festivalsModel.findOne({ _id: item });
         })
       );
 
-      // console.log(festivals);
+      //console.log(festivals);
 
       res.status(200).json({ result, festivals });
     })
@@ -197,6 +222,7 @@ const delDestination = async (req, res) => {
 module.exports = {
   addDestinations,
   getDestinations,
+  getTop,
   getDestinationById,
   getDestinationByCatg,
   getDestinationByDays,

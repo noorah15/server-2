@@ -48,21 +48,23 @@ const getDayInYourCity = (req, res) => {
       res.status(400).send(err);
     });
 };
-
 const getTop = (req, res) => {
   dayInYourCityModel
     .find({ isDel: false })
     .then((result) => {
+      //console.log(result);
       for (let i = 0; i < result.length; i++) {
-        for (let j = i + 1; j < arr.result; j++) {
-          if (result[i].numOfOrders > result[j].numOfOrders) {
+        for (let j = i + 1; j < result.length; j++) {
+          //console.log(result[i].reviews);
+          if (result[i].reviews < result[j].reviews) {
             let swap = result[i];
             result[i] = result[j];
             result[j] = swap;
           }
+          //console.log(result[i]);
         }
       }
-      console.log(result);
+
       res.status(200).json(result);
     })
     .catch((err) => {
