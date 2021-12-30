@@ -2,13 +2,13 @@ const express = require("express");
 const {
   addComment,
   delComment,
-  getCommentsForDestination,
+  getCommentsForArticle,
   getCommentsForUser,
 } = require("./../controllers/comments.js");
 const comments = express.Router();
 
 comments.post("/add", addComment);
-comments.get("/getCommentsForDestination/:id", getCommentsForDestination);
+comments.get("/getCommentsForArticle/:id", getCommentsForArticle);
 comments.get("/getCommentsForUser/:id", getCommentsForUser);
 comments.delete("/del", delComment);
 

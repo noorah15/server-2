@@ -1,11 +1,11 @@
 const commentsModel = require("./../../db/models/comments");
 
 const addComment = (req, res) => {
-  const { userId, destinationId, text } = req.body;
+  const { userId, articleId, text } = req.body;
 
   const newComment = new commentsModel({
     userId,
-    destinationId,
+    articleId,
     text,
   });
 
@@ -34,10 +34,10 @@ const delComment = async (req, res) => {
   }
 };
 
-const getCommentsForDestination = (req, res) => {
+const getCommentsForArticle = (req, res) => {
   const { id } = req.params;
   commentsModel
-    .findOne({ destinationId: id, isDel: false })
+    .find({ articleId: id, isDel: false })
     .then((result) => {
       res.status(200).json(result);
     })
@@ -61,6 +61,6 @@ const getCommentsForUser = (req, res) => {
 module.exports = {
   addComment,
   delComment,
-  getCommentsForDestination,
+  getCommentsForArticle,
   getCommentsForUser,
 };

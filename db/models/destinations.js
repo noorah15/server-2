@@ -13,6 +13,8 @@ const destinations = new mongoose.Schema({
   expiryDate: { type: Date, min: "2000-01-01", required: true },
   catg: { type: String, required: true, trim: true },
   reviews: { type: Number, default: 0 },
+  reviewCount: { type: Number, default: 0 },
+  orderCount: { type: Number, default: 0 },
   isItSuitableForFamily: { type: Boolean, default: true },
   isDel: { type: Boolean, default: false },
 });

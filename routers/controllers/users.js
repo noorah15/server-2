@@ -23,7 +23,7 @@ const setPassword = async (password) => {
 };
 
 const register = async (req, res) => {
-  const { email, password, role } = req.body;
+  const { email, password, phoneNumber, role } = req.body;
 
   const savedEmail = email.toLowerCase().trim();
 
@@ -60,6 +60,7 @@ const register = async (req, res) => {
             username,
             password: passwordHashed,
             role,
+            phoneNumber,
           });
 
           newUser
@@ -183,6 +184,18 @@ const login = (req, res) => {
     });
 };
 
+const getUserById = (req, res) => {
+  const { id } = req.params;
+  userModel
+    .findOne({ _id: id, isDel: false })
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+};
+
 //for admin
 
 const getUsers = (req, res) => {
@@ -196,17 +209,28 @@ const getUsers = (req, res) => {
     });
 };
 
-const delUser = async (req, res) => {
-  const { username } = req.body;
+const updateFavUser = async (req, res) => {
+  const { id, fav } = req.body;
 
-  let doc = await userModel.updateOne({ username: username }, { isDel: true });
+  console.log(fav);
+
+  let doc = await userModel.updateOne({ _id: id }, { fav: fav });
+  res.status(200).json(doc);
+};
+
+const delUser = async (req, res) => {
+  const { id } = req.body;
+
+  let doc = await userModel.updateOne({ _id: id }, { isDel: true });
   res.status(200).json(doc);
 };
 
 module.exports = {
   register,
+  updateFavUser,
   verify,
   login,
+  getUserById,
   getUsers,
   delUser,
   resetPassword,
