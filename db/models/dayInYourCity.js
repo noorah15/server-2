@@ -13,6 +13,8 @@ const dayInYourCity = new mongoose.Schema({
   timeFinish: { type: Number, required: true },
   catg: { type: String, required: true, trim: true },
   reviews: { type: Number, default: 0 },
+  reviewCount: { type: Number, default: 0 },
+  orderCount: { type: Number, default: 0 },
   isItSuitableForFamily: { type: Boolean, default: true },
   isDel: { type: Boolean, default: false },
 });
