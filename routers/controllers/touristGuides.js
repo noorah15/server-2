@@ -84,10 +84,17 @@ const updateTouristGuides = async (req, res) => {
 
 const getTouristGuidesByCity = (req, res) => {
   const { city } = req.params;
-  console.log(city);
+
   touristGuidesModel
-    .find({ city, isDel: false })
-    .then((result) => {
+    .find({ isDel: false })
+    .then((result1) => {
+      const result = result1.filter((item) => {
+        let arr = item.city.split("-");
+        const newArr = arr.map((item2) => item2.trim());
+
+        return newArr.includes(city);
+      });
+      //console.log("        ........" + result);
       res.status(200).json(result);
     })
     .catch((err) => {

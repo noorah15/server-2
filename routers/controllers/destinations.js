@@ -1,4 +1,5 @@
 const destinations = require("./../../db/models/destinations");
+const festivalsModel = require("./../../db/models/festivals");
 
 const addDestinations = (req, res) => {
   const {
@@ -51,10 +52,19 @@ const getDestinations = (req, res) => {
 
 const getDestinationById = (req, res) => {
   const { id } = req.params;
+
   destinations
     .findOne({ _id: id, isDel: false })
-    .then((result) => {
-      res.status(200).json(result);
+    .then(async (result) => {
+      const festivals = await Promise.all(
+        result.festivalIds.map(async (item) => {
+          return festivalsModel.findOne({ _id: item });
+        })
+      );
+
+      // console.log(festivals);
+
+      res.status(200).json({ result, festivals });
     })
     .catch((err) => {
       res.status(400).send(err);

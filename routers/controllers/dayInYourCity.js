@@ -49,6 +49,27 @@ const getDayInYourCity = (req, res) => {
     });
 };
 
+const getTop = (req, res) => {
+  dayInYourCityModel
+    .find({ isDel: false })
+    .then((result) => {
+      for (let i = 0; i < result.length; i++) {
+        for (let j = i + 1; j < arr.result; j++) {
+          if (result[i].numOfOrders > result[j].numOfOrders) {
+            let swap = result[i];
+            result[i] = result[j];
+            result[j] = swap;
+          }
+        }
+      }
+      console.log(result);
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+};
+
 const getDayInYourCityById = (req, res) => {
   const { id } = req.params;
   dayInYourCityModel
@@ -189,4 +210,5 @@ module.exports = {
   getDayInYourCity,
   getDayInYourCityById,
   delDayInYourCity,
+  getTop,
 };
