@@ -35,8 +35,9 @@ const getTransportation = (req, res) => {
 };
 
 const getTransportationById = (req, res) => {
+  const { id } = req.params;
   transportationModel
-    .find({ isDel: false })
+    .findOne({ _id: id, isDel: false })
     .then((result) => {
       res.status(200).json(result);
     })
