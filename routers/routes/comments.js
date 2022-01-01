@@ -5,11 +5,17 @@ const {
   getCommentsForArticle,
   getCommentsForUser,
 } = require("./../controllers/comments.js");
+const authentication = require("../middlewares/authentication");
+const {
+  adminAuthorization,
+  userAuthorization,
+  adminAndUserAuthorization,
+} = require("../middlewares/authorization");
 const comments = express.Router();
 
-comments.post("/add", addComment);
+comments.post("/add", authentication, userAuthorization, addComment);
 comments.get("/getCommentsForArticle/:id", getCommentsForArticle);
 comments.get("/getCommentsForUser/:id", getCommentsForUser);
-comments.delete("/del", delComment);
+comments.delete("/del", authentication, adminAndUserAuthorization, delComment);
 
 module.exports = comments;

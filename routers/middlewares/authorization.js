@@ -22,4 +22,21 @@ const userAuthorization = async (req, res, next) => {
   }
 };
 
-module.exports = { adminAuthorization, userAuthorization };
+const adminAndUserAuthorization = async (req, res, next) => {
+  const { userId } = req.body;
+  const result = await roleModel.findById(req.token.role);
+
+  // console.log(userId);
+  // console.log(req.token.userId);
+  if (req.token.userId === userId || result.role === "admin") {
+    next();
+  } else {
+    res.status(403).json({ message: "forbidden" });
+  }
+};
+
+module.exports = {
+  adminAuthorization,
+  userAuthorization,
+  adminAndUserAuthorization,
+};
