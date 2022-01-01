@@ -6,7 +6,7 @@ const transportation = new mongoose.Schema({
   carType: { type: String, required: true, trim: true },
   model: { type: String, required: true, trim: true },
   image: { type: String, required: true, trim: true },
-  price: { type: String, required: true },
+  price: { type: Number, required: true },
   isDel: { type: Boolean, default: false },
 });
 

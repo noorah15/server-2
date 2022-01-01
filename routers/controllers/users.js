@@ -151,6 +151,7 @@ const login = (req, res) => {
     .find({
       email: editedEmail,
       verified: true,
+      isDel: false,
     })
     .then(async (result) => {
       if (result) {

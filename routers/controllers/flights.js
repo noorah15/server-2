@@ -42,9 +42,9 @@ const getFlights = (req, res) => {
 };
 
 const getFlightsByCity = (req, res) => {
-  const { from, to } = req.params;
+  const { to } = req.params;
   flightsModel
-    .find({ from, to, isDel: false })
+    .find({ to, isDel: false })
     .then((result) => {
       res.status(200).json(result);
     })
