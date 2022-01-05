@@ -32,7 +32,6 @@ userRouter.put(
   updateFavUser
 );
 userRouter.delete("/del", authentication, adminAndUserAuthorization, delUser);
-//for admin
-userRouter.get("/getUsers", authentication, adminAuthorization, getUsers);
+userRouter.get("/getUsers", getUsers);
 
 module.exports = userRouter;

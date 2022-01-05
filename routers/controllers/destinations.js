@@ -74,6 +74,108 @@ const getTop = (req, res) => {
     });
 };
 
+const getDown = (req, res) => {
+  destinations
+    .find({ isDel: false })
+    .then((result) => {
+      //console.log(result);
+      for (let i = 0; i < result.length; i++) {
+        for (let j = i + 1; j < result.length; j++) {
+          //console.log(result[i].reviews);
+          if (result[i].reviews > result[j].reviews) {
+            let swap = result[i];
+            result[i] = result[j];
+            result[j] = swap;
+          }
+          //console.log(result[i]);
+        }
+      }
+
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+};
+
+const getHPrice = (req, res) => {
+  destinations
+    .find({ isDel: false })
+    .then((result) => {
+      //console.log(result);
+      for (let i = 0; i < result.length; i++) {
+        let cost1 = Number(result[i].cost) + Number(result[i].days) * 250;
+        for (let j = i + 1; j < result.length; j++) {
+          const cost2 = Number(result[j].cost) + Number(result[j].days) * 250;
+          //console.log(result[i].reviews);
+          if (cost1 < cost2) {
+            let swap = result[i];
+            result[i] = result[j];
+            result[j] = swap;
+          }
+          //console.log(result[i]);
+        }
+      }
+
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+};
+
+const getLPrice = (req, res) => {
+  destinations
+    .find({ isDel: false })
+    .then((result) => {
+      //console.log(result);
+      for (let i = 0; i < result.length; i++) {
+        let cost1 = Number(result[i].cost) + Number(result[i].days) * 250;
+        for (let j = i + 1; j < result.length; j++) {
+          const cost2 = Number(result[j].cost) + Number(result[j].days) * 250;
+          console.log(cost2);
+          if (Number(cost1) > Number(cost2)) {
+            let swap = result[i];
+            result[i] = result[j];
+            result[j] = swap;
+          }
+          //console.log(result[i]);
+        }
+      }
+
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+};
+
+const getHNumOfOrders = (req, res) => {
+  destinations
+    .find({ isDel: false })
+    .then((result) => {
+      //console.log(result);
+      for (let i = 0; i < result.length; i++) {
+        let cost1 = Number(result[i].cost) + Number(result[i].days) * 250;
+        for (let j = i + 1; j < result.length; j++) {
+          const cost2 = Number(result[j].cost) + Number(result[j].days) * 250;
+          //console.log(result[i].reviews);
+          if (result[i].numOfOrders < result[j].numOfOrders) {
+            let swap = result[i];
+            result[i] = result[j];
+            result[j] = swap;
+          }
+          //console.log(result[i]);
+        }
+      }
+
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+};
+
 const getDestinationById = (req, res) => {
   const { id } = req.params;
 
@@ -229,4 +331,9 @@ module.exports = {
   getDestinationByCity,
   delDestination,
   updateDestination,
+
+  getHNumOfOrders,
+  getLPrice,
+  getHPrice,
+  getDown,
 };

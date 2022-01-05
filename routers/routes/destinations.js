@@ -9,6 +9,11 @@ const {
   getDestinationByCity,
   delDestination,
   updateDestination,
+
+  getHNumOfOrders,
+  getLPrice,
+  getHPrice,
+  getDown,
 } = require("./../controllers/destinations.js");
 const authentication = require("../middlewares/authentication");
 const {
@@ -27,6 +32,10 @@ destinations.put(
   updateDestination
 );
 destinations.get("/get", getDestinations);
+destinations.get("/getHNumOfOrders", getHNumOfOrders);
+destinations.get("/getLPrice", getLPrice);
+destinations.get("/getHPrice", getHPrice);
+destinations.get("/getDown", getDown);
 destinations.get("/getTop", getTop);
 destinations.get("/getDestinationById/:id", getDestinationById);
 destinations.get("/getDestinationByCatg/:catg", getDestinationByCatg);

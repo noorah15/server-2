@@ -44,7 +44,7 @@ const register = async (req, res) => {
         // if (found) res.status(400).send("the username is exist");
 
         const found = result.find((item) => {
-          return item.email == savedEmail;
+          return item.email == savedEmail && item.isDel == false;
         });
         if (found) res.status(400).send("the email is exist");
         else {
@@ -80,14 +80,14 @@ const register = async (req, res) => {
         res.send(err);
       });
   else {
-    console.log(password);
+    // console.log(password);
     res.status(400).send("the password is not complex");
   }
 };
 
 const verify = async (req, res) => {
   try {
-    const user = await userModel.findOne({ _id: req.params.id });
+    const user = await userModel.findOne({ _id: req.params.id, isDel: false });
 
     if (!user) return res.status(400).send("Invalid link");
 
@@ -101,7 +101,10 @@ const verify = async (req, res) => {
 
 const resetPassword = async (req, res) => {
   try {
-    const user = await userModel.findOne({ email: req.body.email });
+    const user = await userModel.findOne({
+      email: req.body.email,
+      isDel: false,
+    });
 
     if (!user)
       return res.status(400).send("user with given email doesn't exist");
@@ -197,11 +200,10 @@ const getUserById = (req, res) => {
     });
 };
 
-//for admin
-
 const getUsers = (req, res) => {
   userModel
     .find({})
+    .select("_id username")
     .then((result) => {
       res.json(result);
     })
@@ -213,7 +215,7 @@ const getUsers = (req, res) => {
 const updateFavUser = async (req, res) => {
   const { id, fav } = req.body;
 
-  console.log(fav);
+  // console.log(fav);
 
   let doc = await userModel.updateOne({ _id: id }, { fav: fav });
   res.status(200).json(doc);

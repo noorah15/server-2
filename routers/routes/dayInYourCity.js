@@ -5,6 +5,11 @@ const {
   getDayInYourCityById,
   delDayInYourCity,
   getTop,
+  getDown,
+
+  getHPrice,
+  getLPrice,
+  getHNumOfOrders,
 } = require("./../controllers/dayInYourCity.js");
 const authentication = require("../middlewares/authentication");
 const {
@@ -24,6 +29,10 @@ dayInYourCity.post(
 //destinations.put("/update", updateDestination);
 dayInYourCity.get("/get", getDayInYourCity);
 dayInYourCity.get("/getDayInYourCityById/:id", getDayInYourCityById);
+dayInYourCity.get("/getHNumOfOrders", getHNumOfOrders);
+dayInYourCity.get("/getLPrice", getLPrice);
+dayInYourCity.get("/getHPrice", getHPrice);
+dayInYourCity.get("/getDown", getDown);
 dayInYourCity.get("/getTop", getTop);
 // destinations.get("/getDestinationByCatg/:catg", getDestinationByCatg);
 // destinations.get("/getDestinationByDays/:days", getDestinationByDays);
