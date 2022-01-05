@@ -72,6 +72,101 @@ const getTop = (req, res) => {
     });
 };
 
+const getDown = (req, res) => {
+  dayInYourCityModel
+    .find({ isDel: false })
+    .then((result) => {
+      //console.log(result);
+      for (let i = 0; i < result.length; i++) {
+        for (let j = i + 1; j < result.length; j++) {
+          //console.log(result[i].reviews);
+          if (result[i].reviews > result[j].reviews) {
+            let swap = result[i];
+            result[i] = result[j];
+            result[j] = swap;
+          }
+          //console.log(result[i]);
+        }
+      }
+
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+};
+
+const getHPrice = (req, res) => {
+  dayInYourCityModel
+    .find({ isDel: false })
+    .then((result) => {
+      //console.log(result);
+      for (let i = 0; i < result.length; i++) {
+        for (let j = i + 1; j < result.length; j++) {
+          //console.log(result[i].reviews);
+          if (result[i].cost < result[j].cost) {
+            let swap = result[i];
+            result[i] = result[j];
+            result[j] = swap;
+          }
+          //console.log(result[i]);
+        }
+      }
+
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+};
+
+const getLPrice = (req, res) => {
+  dayInYourCityModel
+    .find({ isDel: false })
+    .then((result) => {
+      for (let i = 0; i < result.length; i++) {
+        for (let j = i + 1; j < result.length; j++) {
+          //console.log(cost2);
+          if (result[i].cost > result[j].cost) {
+            let swap = result[i];
+            result[i] = result[j];
+            result[j] = swap;
+          }
+          //console.log(result[i]);
+        }
+      }
+      //console.log(result);
+
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+};
+
+const getHNumOfOrders = (req, res) => {
+  dayInYourCityModel
+    .find({ isDel: false })
+    .then((result) => {
+      //console.log(result);
+      for (let i = 0; i < result.length; i++) {
+        for (let j = i + 1; j < result.length; j++) {
+          if (result[i].numOfOrders < result[j].numOfOrders) {
+            let swap = result[i];
+            result[i] = result[j];
+            result[j] = swap;
+          }
+          //console.log(result[i]);
+        }
+      }
+
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+};
+
 const getDayInYourCityById = (req, res) => {
   const { id } = req.params;
   dayInYourCityModel
@@ -213,4 +308,9 @@ module.exports = {
   getDayInYourCityById,
   delDayInYourCity,
   getTop,
+  getDown,
+
+  getHPrice,
+  getLPrice,
+  getHNumOfOrders,
 };
